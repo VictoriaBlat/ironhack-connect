@@ -18,18 +18,18 @@ const hashPass = bcrypt.hashSync('1234', salt);
 const defaultUser = [
   //admin
   {
-    email: 'admin@ironhack-connect.de',
+    email: 'admin@example.com',
     role: 'admin',
     password: hashPass,
   },
   //user1
   {
-    email: 'user1@ironhack-connect.de',
+    email: 'user1@example.com',
     password: hashPass,
   },
   //moderator
   {
-    email: 'moderator@ironhack-connect.de',
+    email: 'moderator@example.com',
     role: 'moderator',
     password: hashPass,
   },
