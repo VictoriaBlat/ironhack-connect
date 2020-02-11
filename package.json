@@ -20,5 +20,20 @@
   },
   "devDependencies": {
     "nodemon": "^1.12.1"
-  }
+  },
+  "description": "",
+  "main": "app.js",
+  "bin": {
+    "ironhack-connect": "seed.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JonathanSaudhof/ironhack-connect.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JonathanSaudhof/ironhack-connect/issues"
+  },
+  "homepage": "https://github.com/JonathanSaudhof/ironhack-connect#readme"
 }
