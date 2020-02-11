@@ -6,10 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{title}}</title>
+
+  {{!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> --}}
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 
 <body>
+<<<<<<< HEAD:views/layout.hbs
   <div class="menu-wrap">
     {{!-- <input type="checkbox" class="toggler"> --}}
     <div class="hamburger">
@@ -28,8 +31,18 @@
       </div>
     </div>
   </div>
+=======
+  <div class="body-content">
 
-  {{{body}}}
+    {{> headerUser}}
+    <main>
+      {{{body}}}
+    </main>
+    {{> footer}}
+>>>>>>> 6f31cd4f213be7d36b35871400a49de0a54b2065:views/layouts/main.hbs
+
+  </div>
+  
 
   <script src="/javascripts/script.js"></script>
 </body>

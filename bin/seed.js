@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 const promises = [];
-// Mongoose connect
 
+// Mongoose connect
 mongoose.connect(process.env.MONGODB_URI, () => {
   console.log('connected to DB for seed');
 });
@@ -10,24 +10,28 @@ mongoose.connect(process.env.MONGODB_URI, () => {
 // USER - Seeds
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
+const bcryptSalt = 10;
+
+const salt = bcrypt.genSaltSync(bcryptSalt);
+const hashPass = bcrypt.hashSync('1234', salt);
 
 const defaultUser = [
   //admin
   {
     email: 'admin@ironhack-connect.de',
     role: 'admin',
-    password: 1234,
+    password: hashPass,
   },
   //user1
   {
     email: 'user1@ironhack-connect.de',
-    password: 1234,
+    password: hashPass,
   },
   //moderator
   {
     email: 'moderator@ironhack-connect.de',
     role: 'moderator',
-    password: 1234,
+    password: hashPass,
   },
 ];
 User.collection.drop();
