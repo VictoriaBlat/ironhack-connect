@@ -42,9 +42,6 @@ promises.push(
 // TODO: Create the jobsSeed
 const defaultJobs = [{}];
 
-
-
-
 // Wait for all Promisses and close the connection afterwards
 
 Promise.all(promises).then((result) => {

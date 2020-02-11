@@ -1,4 +1,3 @@
-
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -6,6 +5,7 @@ const userSchema = new Schema(
   {
     // admin sends invitation with just the email and the role (default: user)
     email: { type: String, require: true, unique: true },
+
     role: {
       type: String,
       enum: ['user', 'moderator', 'admin'],
@@ -13,33 +13,61 @@ const userSchema = new Schema(
       require: true,
     },
 
-    // user definitely has to set (not required in the schema, just in the form validation):
-    name: { type: String },
-    surname: { type: String },
-    password: { type: String },
     activatedAt: { type: Date },
     activated: { type: Boolean, default: false }, // time when the user logged in the first time and saved his Name and Surname
     loggedIn: { type: Boolean, default: false }, //optional
-
-    // minor important attributes
-    image: { type: String, default: '/images/profile/no-image.jpg' },
-
-    techStack: [
+    jobsList: [
       {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Jobs',
+      },
+    ],
+    profile: {
+      name: { type: String },
+      surname: { type: String },
+      password: { type: String },
+      portfolio: String, // has to start with https:// | http:// AND end with .*** :
+
+      course: { type: String, enum: ['Data', 'UX/UI', 'WebDev'] },
+
+      batch: {
+        month: String,
+        year: Number,
+      },
+      // minor important attributes
+      image: { type: String, default: '/images/profile/no-image.jpg' },
+
+      techStack: [
+        {
+          type: String,
+          rate: { type: Number, enum: [1, 2, 3, 4, 5] },
+        },
+      ],
+
+      cv: [
+        {
+          jobTitle: String,
+          company: String,
+          companyUrl: String,
+          startDate: { type: Date },
+          endDate: { type: Date },
+          current: Boolean,
+        },
+      ],
+      searchFor: {
         type: String,
+        enum: [
+          'part time job',
+          'full time job',
+          'collaboration',
+          'employees',
+          'freelance',
+          "don't know",
+        ],
       },
-    ],
+    },
 
-    cv: [
-      {
-        title: String,
-        company: String,
-        companyUrl: String,
-        startDate: { type: Date },
-        endDate: { type: Date },
-        current: Boolean,
-      },
-    ],
+    // user definitely has to set (not required in the schema, just in the form validation):
   },
   {
     timestamps: {
