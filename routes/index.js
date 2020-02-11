@@ -6,7 +6,6 @@ router.get('/', (req, res, next) => {
   //updated header
 
   //redirect to feed, if a session exists
-  console.log(req.user);
   if (req.user) {
     res.redirect('/feed');
     return;

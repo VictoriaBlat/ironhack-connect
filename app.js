@@ -49,8 +49,6 @@ app.use(
   }),
 );
 
-
-
 app.engine(
   'hbs',
   hbs({
@@ -81,8 +79,10 @@ require('./passport')(app);
 
 const index = require('./routes/index');
 app.use('/', index);
-const userRoute = require('./routes/auth/index');
-app.use('/', userRoute);
+const authRoute = require('./routes/auth/index');
+app.use('/', authRoute);
+const userRoute = require('./routes/user');
+app.use('/feed', userRoute);
 
 const jobsRoute = require('./routes/jobs');
 app.use('/jobs', jobsRoute);
