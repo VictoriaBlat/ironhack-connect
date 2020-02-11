@@ -1,7 +1,6 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require("mongoose");
 
-const jobSchema = new Schema(
+const jobSchema = new mongoose.Schema(
   {
     title: { type: String, require: true },
     company: { type: String },
@@ -9,29 +8,30 @@ const jobSchema = new Schema(
     description: String,
     contractType: {
       type: String,
-      enum: ['part time job', 'full time job', 'freelance'],
+      enum: ["part time job", "full time job", "freelance"]
     },
     industry: { type: String, minlength: 200 },
-    category: { type: String, enum: ['Data', 'UX/UI', 'WebDev'] },
+    category: { type: String, enum: ["Data", "UX/UI", "WebDev"] },
     location: {
       city: String,
-      country: String,
+      country: String
     },
     author: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
+      ref: "User"
     },
-    startsAt: Date,
+    startsAt: Date
   },
   {
     timestamps: {
-      createdAt: 'created_at',
-      updatedAt: 'updated_at',
-    },
-  },
+      createdAt: "created_at",
+      updatedAt: "updated_at"
+    }
+  }
 );
 
-module.exports = mongoose.model('Job', jobSchema);
+const Job = mongoose.model("Job", jobSchema);
+module.exports = Job;
 
 /*
 Job SCHEMA:
