@@ -3,7 +3,17 @@ const router = express.Router();
 
 /* GET home page */
 router.get('/', (req, res, next) => {
-  res.render('index');
+  //updated header
+
+  //redirect to feed, if a session exists
+  console.log(req.user);
+  if (req.user) {
+    res.redirect('/feed');
+    return;
+  }
+  //redirect to feed, if a session exists
+  res.redirect('/login');
+  return;
 });
 
 /*Page with the recently added*/
@@ -23,7 +33,5 @@ router.get('/jobs-search', (req, res) => {
 router.get('/userId', (req, res) => {
   res.render('profile');
 });
-
-
 
 module.exports = router;

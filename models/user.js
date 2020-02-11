@@ -5,14 +5,13 @@ const userSchema = new Schema(
   {
     // admin sends invitation with just the email and the role (default: user)
     email: { type: String, require: true, unique: true },
-
+    password: { type: String },
     role: {
       type: String,
       enum: ['user', 'moderator', 'admin'],
       default: 'user',
       require: true,
     },
-
     activatedAt: { type: Date },
     activated: { type: Boolean, default: false }, // time when the user logged in the first time and saved his Name and Surname
     loggedIn: { type: Boolean, default: false }, //optional
@@ -25,7 +24,7 @@ const userSchema = new Schema(
     profile: {
       name: { type: String },
       surname: { type: String },
-      password: { type: String },
+
       portfolio: String, // has to start with https:// | http:// AND end with .*** :
 
       course: { type: String, enum: ['Data', 'UX/UI', 'WebDev'] },
