@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,28 @@
   {{!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> --}}
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
+
 <body>
+<<<<<<< HEAD:views/layout.hbs
+  <div class="menu-wrap">
+    {{!-- <input type="checkbox" class="toggler"> --}}
+    <div class="hamburger">
+      <div></div>
+    </div>
+    <div class="menu">
+      <div>
+        <div>
+          <ul>
+            <li><a href="/recent">Dashboard</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="/favourites">My list</a></li>
+            <li><a href="#">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+=======
   <div class="body-content">
 
     {{> headerUser}}
@@ -17,10 +39,12 @@
       {{{body}}}
     </main>
     {{> footer}}
+>>>>>>> 6f31cd4f213be7d36b35871400a49de0a54b2065:views/layouts/main.hbs
 
   </div>
   
 
   <script src="/javascripts/script.js"></script>
 </body>
+
 </html>
