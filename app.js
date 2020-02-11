@@ -1,13 +1,19 @@
 require('dotenv').config();
 
+// general imports
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const favicon = require('serve-favicon');
-const hbs = require('hbs');
+const hbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
+
+//authentication imports
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+const flash = require('connect-flash');
 
 mongoose
 	.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
@@ -43,19 +49,43 @@ app.use(
 	}),
 );
 
-app.set('views', path.join(__dirname, 'views'));
+app.engine(
+	'hbs',
+	hbs({
+		extname: 'hbs',
+		defaultLayout: 'main',
+		/* layoutsDir: path.resolve(__dirname, 'views/layouts' */
+	}),
+);
 app.set('view engine', 'hbs');
+app.set('views', path.resolve(__dirname, 'views'));
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // default value for title local
 app.locals.title = 'Ironhack-Connect';
 
+app.use(
+	session({
+		secret: 'irongenerator',
+		resave: true,
+		saveUninitialized: true,
+		store: new MongoStore({ mongooseConnection: mongoose.connection }),
+	}),
+);
+app.use(flash());
+require('./passport')(app);
+
 const index = require('./routes/index');
 app.use('/', index);
-const userRoute = require('./routes/auth/index');
-app.use('/', userRoute);
+const authRoute = require('./routes/auth/index');
+app.use('/', authRoute);
 
+const userRoute = require('./routes/user');
+app.use('/feed', userRoute);
+
+const jobsRoute = require('./routes/jobs');
+app.use('/jobs', jobsRoute);
 // Users route
-
 module.exports = app;
