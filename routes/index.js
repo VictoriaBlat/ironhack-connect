@@ -15,7 +15,7 @@ router.get('/', (req, res, next) => {
     return;
   }
   //redirect to feed, if a session exists
-  res.redirect('/login');
+  res.redirect("/login");
   return;
 });
 
