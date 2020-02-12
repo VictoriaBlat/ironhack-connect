@@ -91,7 +91,6 @@ app.use('/', index);
 app.use('/', authRoute); //
 app.use((req, res, next) => {
   res.locals.user = req.user;
-  console.log('=====> Locals: ', res.locals.user);
   next();
 });
 const userRoute = require('./routes/user');

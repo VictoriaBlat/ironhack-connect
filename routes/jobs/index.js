@@ -14,7 +14,7 @@ router.get('/new', (req, res) => {
 router.post('/', (req, res, next) => {
   console.log({ ...req.body });
 
-  Job.create({ ...req.body })
+  Job.create({ ...req.body, author: req.user._id })
     .then((createdJob) => {
       // res.send(createdJob);
       res.redirect(`jobs/${createdJob._id}`);
@@ -57,8 +57,11 @@ router.get('/:id', (req, res) => {
     .then((JobInfo) => {
       console.log(JobInfo);
 
-      if (jobId === userId) {
-        res.render('job/jobPage.hbs', { JobInfo, user: true });
+      if (jobId === userId || req.user.role === 'admin') {
+        const j = JobInfo.toString();
+
+        res.render('job/jobPage.hbs', { jobInfo: JobInfo, allowed: true });
+        return;
       }
 
       res.render('job/jobPage.hbs', JobInfo);
