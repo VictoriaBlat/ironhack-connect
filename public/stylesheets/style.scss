@@ -50,6 +50,22 @@ header {
     display: none;
   }
 }
+.profile {
+  width: 100%;
+  .profile-head {
+    display: flex;
+
+    width: 100%;
+    img {
+      display: flex;
+      flex: 1 1 25%;
+      width: 25%;
+    }
+    .profile-intro {
+      flex: 1 1 75%;
+    }
+  }
+}
 
 .content-wrapper {
   display: flex;
@@ -60,12 +76,14 @@ header {
     margin-bottom: 1rem;
   }
 
-  .jobs-preview {
+  .jobs-preview,
+  .users-preview {
     display: flex;
     flex-direction: column;
     width: 100;
 
-    .job-preview {
+    .job-preview,
+    .user-preview {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -90,13 +108,19 @@ header {
     flex-direction: column;
     width: 100%;
 
-    input {
+    input,
+    select {
+      &::placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: $medium-theme-color;
+        opacity: 1; /* Firefox */
+      }
       min-height: 20px;
       padding-left: 1rem;
       height: 2rem;
       border: 1px solid $medium-theme-color;
       border-radius: 0.2rem;
-      color: $medium-theme-color;
+      color: $dark-theme-color;
       display: flex;
       align-items: center;
     }

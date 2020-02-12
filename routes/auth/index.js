@@ -26,7 +26,7 @@ router.post(
 
 router.get('/logout', (req, res) => {
   req.logout();
-  res.redirect('/');
+  res.redirect('/login');
 });
 
 //createUser , just for admins ==> other route
