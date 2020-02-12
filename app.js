@@ -49,20 +49,20 @@ app.use(
   }),
 );
 
-
 const hbs = exphbs.create({
   extname: 'hbs',
   defaultLayout: 'main',
   /* layoutsDir: path.resolve(__dirname, 'views/layouts' */
   helpers: {
     equal: function(attribute1, attribute2, options) {
+      console.log(typeof attribute1, typeof attribute2);
       if (attribute1 === attribute2) {
-        options.fn(this);
+        console.log('---> is equal');
+        return options.fn(this);
       }
     },
   },
 });
-
 
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
@@ -86,15 +86,13 @@ app.use(flash());
 require('./passport')(app);
 
 const index = require('./routes/index');
-app.use('/', index);
-
 const authRoute = require('./routes/auth/index');
-app.use('/', authRoute);
-
+app.use('/', index);
+app.use('/', authRoute); //
 const userRoute = require('./routes/user');
-app.use('/feed', userRoute);
+app.use('/user', userRoute);
 
 const jobsRoute = require('./routes/jobs');
-app.use('/jobs', jobsRoute);
+// app.use('/jobs', jobsRoute);
 // Users route
 module.exports = app;

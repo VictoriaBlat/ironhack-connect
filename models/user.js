@@ -24,11 +24,8 @@ const userSchema = new Schema(
     profile: {
       name: { type: String },
       surname: { type: String },
-
       portfolio: String, // has to start with https:// | http:// AND end with .*** :
-
       course: { type: String, enum: ['Data', 'UX/UI', 'WebDev'] },
-
       batch: {
         month: String,
         year: Number,
@@ -77,3 +74,4 @@ const userSchema = new Schema(
 );
 
 module.exports = mongoose.model('User', userSchema);
+

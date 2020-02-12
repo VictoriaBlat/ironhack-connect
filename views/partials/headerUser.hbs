@@ -6,26 +6,26 @@
         <img id="close-btn" src="/images/close-btn.svg" alt="ironhack-connect-logo" onclick="menuToggle()">
         <navcontent>
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/today">Today</a></li>
-                <li><a href="/login">Login</a></li>
-                {{#equal "admin" user.role}}
-                     <li><a href="#">Admin</a></li>
+                <li><a href="/">Dashboard</a></li>
+                <li><a href="/today">Jobs</a></li>
+                {{#equal "admin" role}}
+                    <li><a href="#">Test</a></li>
                 {{/equal}}
                 <li><a href="/logout">Logout</a></li>
             </ul>
-
         </navcontent>       
     </nav>
     <nav class="nav" style=" "> 
-
-        <navcontent style=" ">
+        <navcontent>
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/today">Today</a></li>
+                <li><a href="/today">Jobs</a></li>
                 <li><a href="/login">Login</a></li>
+                {{#equal "admin" role}}
+                    <li><a href="#">Test</a></li>
+                {{/equal}}
+                <li><a href="/logout">Logout</a></li>
             </ul>
-
         </navcontent>       
     </nav>
 
