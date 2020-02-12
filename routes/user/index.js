@@ -202,9 +202,16 @@ router.post('/create', (req, res, next) => {
 
 router.get('/:id', (req, res, next) => {
   const userId = req.params.id;
+  const visitorId = req.user._id;
   console.log('---> User profile of: ', userId);
   User.findById(userId).then((user) => {
-    res.render('user/profile', user);
+    let allowed = user._id.toString() === visitorId.toString() ? true : false;
+    if (req.user.role === 'admin') {
+      allowed = true;
+    }
+
+    console.log(allowed, user._id, visitorId);
+    res.render('user/profile', { user: user, allowed });
     return;
   });
 });
