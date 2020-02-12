@@ -9,7 +9,11 @@
   <div class="job-preview">
     <h3>{{this.title}}</h3>
     <h4>{{this.city}}</h4>
-    <img src="{{this.image}}" alt="job icon">
+    <div class="ing-section"> <img src="{{this.image}}" alt="job icon"> </div>
+    <a href="/jobs/{{this.id}}">
+      <h5>View details</h5>
+
+    </a>
   </div>
   {{/each}}
 </div>

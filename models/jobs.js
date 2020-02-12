@@ -8,7 +8,7 @@ const jobSchema = new mongoose.Schema(
     description: { type: String, minlength: 5 },
     contractType: {
       type: String,
-      enum: ["part time job", "full time job", "freelance", ""]
+      enum: ["part time job", "full time job", "freelance", "flexible"]
     },
     industry: { type: String },
     category: { type: String, enum: ["Data", "UX/UI", "WebDev", ""] },
