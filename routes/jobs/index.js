@@ -11,13 +11,13 @@ router.get("/new", (req, res) => {
   res.render("job/addNewJob");
 });
 
-router.post("/new", (req, res, next) => {
+router.post("/", (req, res, next) => {
   console.log({ ...req.body });
 
   Job.create({ ...req.body })
     .then(createdJob => {
       // res.send(createdJob);
-      res.redirect("/jobs/${createdJob._id}");
+      res.redirect(`jobs/${createdJob._id}`);
     })
     .catch(err => {
       next(err);
@@ -48,6 +48,7 @@ router.get("/:id", (req, res) => {
   console.log("Hello");
   Job.findById(req.params.id)
     .then(JobInfo => {
+      console.log(JobInfo);
       res.render("job/jobPage.hbs", JobInfo);
     })
     .catch(err => {
@@ -67,7 +68,7 @@ router.get("/:id/delete", (req, res) => {
 });
 /*Edit Jobs*/
 
-router.get("/:id/edit", (req, res, next) => {
+router.get("/jobs/:id/edit", (req, res, next) => {
   Jobs.finsById(req.params.id)
     .then(jobDocuments => {
       res.render("jobs/jobsEdit.hbs", jobDocuments);

@@ -12,6 +12,10 @@
 
 <h3>{{this.description}}</h3>
 <h4>{{this.author}}</h4>
+{{#if user}}
+<a href="/jobs/{{JobInfo._id}}/edit">Edit this job</a>
+<a href="/jobs/{{JobInfo._id}}/delete">Delete this job</a>
+{{/if}}
 
 
 <button id="reply-butt">Apply</button>
