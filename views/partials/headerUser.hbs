@@ -9,9 +9,10 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/today">Today</a></li>
                 <li><a href="/login">Login</a></li>
-                {{#if admin}}
-                     <li><a href="/datenschutz">Admin</a></li>
-                {{/if}}
+                {{#equal "admin" user.role}}
+                     <li><a href="#">Admin</a></li>
+                {{/equal}}
+                <li><a href="/logout">Logout</a></li>
             </ul>
 
         </navcontent>       
