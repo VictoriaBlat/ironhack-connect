@@ -39,9 +39,19 @@ router.get('/dashboard', checkForActivated, (req, res, next) => {
   if (req.user.role === 'admin') {
   }
 
-  res.render('user/dashboard.hbs', {
-    role: req.user.role,
-  });
+  Job.find({})
+    .sort({ createdAt: -1 })
+    .limit(3)
+    .then((jobs) => {
+      // res.send(jobs);
+      res.render('user/dashboard.hbs', {
+        role: req.user.role,
+        jobRecentList: jobs,
+      });
+    })
+    .catch((err) => {
+      next(err);
+    });
 });
 
 router.post('/firstLogin/:id', (req, res, next) => {

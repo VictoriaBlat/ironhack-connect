@@ -54,10 +54,36 @@ header {
 .content-wrapper {
   display: flex;
   flex-direction: column;
-  padding: 4rem;
+  padding: 3rem;
   align-items: center;
   * {
     margin-bottom: 1rem;
+  }
+
+  .jobs-preview {
+    display: flex;
+    flex-direction: column;
+    width: 100;
+
+    .job-preview {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-height: 100px;
+      border: 1px solid $light-theme-color;
+      .img-section {
+        flex: 1 1 20%;
+        height: 100%;
+        img {
+          height: 100%;
+          width: 100%;
+        }
+      }
+      .content-section {
+        flex: 1 2 80%;
+      }
+    }
   }
   form {
     display: flex;
@@ -89,6 +115,7 @@ header {
     }
   }
 }
+
 .login-form {
   min-width: 250px;
 }

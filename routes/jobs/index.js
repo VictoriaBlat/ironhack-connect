@@ -1,25 +1,25 @@
 /*Profile view*/
 
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const Job = require("../../models/jobs");
+const Job = require('../../models/jobs');
 
 /*Add new Jobs*/
 
-router.get("/new", (req, res) => {
-  console.log("add new route");
-  res.render("job/addNewJob");
+router.get('/new', (req, res) => {
+  console.log('add new route');
+  res.render('job/addNewJob');
 });
 
-router.post("/", (req, res, next) => {
+router.post('/', (req, res, next) => {
   console.log({ ...req.body });
 
   Job.create({ ...req.body })
-    .then(createdJob => {
+    .then((createdJob) => {
       // res.send(createdJob);
       res.redirect(`jobs/${createdJob._id}`);
     })
-    .catch(err => {
+    .catch((err) => {
       next(err);
     });
 
@@ -44,36 +44,48 @@ router.post("/", (req, res, next) => {
 });
 
 /*Job details*/
-router.get("/:id", (req, res) => {
-  console.log("Hello");
-  Job.findById(req.params.id)
-    .then(JobInfo => {
+router.get('/:id', (req, res) => {
+  console.log('Hello');
+
+  const jobId = req.params.id;
+  const userId = req.user._id;
+
+  // userId --> req.user._id
+  // Job.author._id -->
+  Job.findById(jobId)
+    .populate('author')
+    .then((JobInfo) => {
       console.log(JobInfo);
-      res.render("job/jobPage.hbs", JobInfo);
+
+      if (jobId === userId) {
+        res.render('job/jobPage.hbs', { JobInfo, user: true });
+      }
+
+      res.render('job/jobPage.hbs', JobInfo);
     })
-    .catch(err => {
+    .catch((err) => {
       next(err);
     });
 });
 
 /*Delete Jobs*/
-router.get("/:id/delete", (req, res) => {
+router.get('/:id/delete', (req, res) => {
   Job.deleteOne({ _id: req.params.id })
     .then(() => {
-      res.redirect("/jobs");
+      res.redirect('/jobs');
     })
-    .catch(err => {
+    .catch((err) => {
       next(err);
     });
 });
 /*Edit Jobs*/
 
-router.get("/jobs/:id/edit", (req, res, next) => {
+router.get('/jobs/:id/edit', (req, res, next) => {
   Jobs.finsById(req.params.id)
-    .then(jobDocuments => {
-      res.render("jobs/jobsEdit.hbs", jobDocuments);
+    .then((jobDocuments) => {
+      res.render('jobs/jobsEdit.hbs', jobDocuments);
     })
-    .catch(err => {
+    .catch((err) => {
       next(err);
     });
 });

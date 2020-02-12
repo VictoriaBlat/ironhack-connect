@@ -37,10 +37,29 @@ header {
 .content-wrapper {
   display: flex;
   flex-direction: column;
-  padding: 4rem;
+  padding: 3rem;
   align-items: center; }
   .content-wrapper * {
     margin-bottom: 1rem; }
+  .content-wrapper .jobs-preview {
+    display: flex;
+    flex-direction: column;
+    width: 100; }
+    .content-wrapper .jobs-preview .job-preview {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-height: 100px;
+      border: 1px solid #eeeeef; }
+      .content-wrapper .jobs-preview .job-preview .img-section {
+        flex: 1 1 20%;
+        height: 100%; }
+        .content-wrapper .jobs-preview .job-preview .img-section img {
+          height: 100%;
+          width: 100%; }
+      .content-wrapper .jobs-preview .job-preview .content-section {
+        flex: 1 2 80%; }
   .content-wrapper form {
     display: flex;
     flex-direction: column;
