@@ -34,6 +34,18 @@ header {
   header .nav-mobile {
     display: none; }
 
+.profile {
+  width: 100%; }
+  .profile .profile-head {
+    display: flex;
+    width: 100%; }
+    .profile .profile-head img {
+      display: flex;
+      flex: 1 1 25%;
+      width: 25%; }
+    .profile .profile-head .profile-intro {
+      flex: 1 1 75%; }
+
 .content-wrapper {
   display: flex;
   flex-direction: column;
@@ -41,38 +53,58 @@ header {
   align-items: center; }
   .content-wrapper * {
     margin-bottom: 1rem; }
-  .content-wrapper .jobs-preview {
+  .content-wrapper .jobs-preview,
+  .content-wrapper .users-preview {
     display: flex;
     flex-direction: column;
     width: 100; }
-    .content-wrapper .jobs-preview .job-preview {
+    .content-wrapper .jobs-preview .job-preview,
+    .content-wrapper .jobs-preview .user-preview,
+    .content-wrapper .users-preview .job-preview,
+    .content-wrapper .users-preview .user-preview {
       display: flex;
       justify-content: center;
       align-items: center;
       width: 100%;
       max-height: 100px;
       border: 1px solid #eeeeef; }
-      .content-wrapper .jobs-preview .job-preview .img-section {
+      .content-wrapper .jobs-preview .job-preview .img-section,
+      .content-wrapper .jobs-preview .user-preview .img-section,
+      .content-wrapper .users-preview .job-preview .img-section,
+      .content-wrapper .users-preview .user-preview .img-section {
         flex: 1 1 20%;
         height: 100%; }
-        .content-wrapper .jobs-preview .job-preview .img-section img {
+        .content-wrapper .jobs-preview .job-preview .img-section img,
+        .content-wrapper .jobs-preview .user-preview .img-section img,
+        .content-wrapper .users-preview .job-preview .img-section img,
+        .content-wrapper .users-preview .user-preview .img-section img {
           height: 100%;
           width: 100%; }
-      .content-wrapper .jobs-preview .job-preview .content-section {
+      .content-wrapper .jobs-preview .job-preview .content-section,
+      .content-wrapper .jobs-preview .user-preview .content-section,
+      .content-wrapper .users-preview .job-preview .content-section,
+      .content-wrapper .users-preview .user-preview .content-section {
         flex: 1 2 80%; }
   .content-wrapper form {
     display: flex;
     flex-direction: column;
     width: 100%; }
-    .content-wrapper form input {
+    .content-wrapper form input,
+    .content-wrapper form select {
       min-height: 20px;
       padding-left: 1rem;
       height: 2rem;
       border: 1px solid #c8c8c8;
       border-radius: 0.2rem;
-      color: #c8c8c8;
+      color: #30354c;
       display: flex;
       align-items: center; }
+      .content-wrapper form input::placeholder,
+      .content-wrapper form select::placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: #c8c8c8;
+        opacity: 1;
+        /* Firefox */ }
     .content-wrapper form button {
       min-height: 20px;
       background-color: #30354c;

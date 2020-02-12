@@ -10,8 +10,9 @@
                 <li><a href="/today">Jobs</a></li>
                 
                 {{#equal "admin" user.role}}
-                    <li><a href="#">Test</a></li>
+                    <li><a href="/user/create">Create User</a></li>
                 {{/equal}}
+                <li><a href="/user/{{user._id}}">My Profile</a></li>
                 <li><a href="/logout">Logout</a></li>
             </ul>
         </navcontent>       

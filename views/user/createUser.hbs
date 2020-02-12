@@ -1,2 +1,20 @@
-<h1>Create a User Just for Admins</h1>
+<div class="content-wrapper">
+  <h1>Create a new User</h1>
+
+  <form action="/user/create" method="post">
+    <input type="email" name="email" placeholder="E-Mail of the user"value="{{email}}" required>
+ 
+    <select id="roles-select" name="role"  placeholder="Select">
+      <option name="role" value="user" selected>User</option>
+      <option name="role" value="moderator">Moderator</option>
+      <option name="role" value="moderator">Admin</option>    
+    </select>
+    <div class="opt-in" ><input type="checkbox" name="opt" id="create-opt"><label for="create-opt">Sure ?</label></div>
+    <button type="submit">Create User</button>
+  
+  </form>
+
+
+</div>
+
 
