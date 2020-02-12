@@ -1,54 +1,54 @@
 <div class="content-wrapper">
 
-    
 
-    {{#equal "admin" user.role}}
 
-    <h3>Welcome {{user.profile.name}}</h3>
+  {{#equal "admin" user.role}}
 
-    <form class="form-recent" action="/user/search" method="GET">
-      <input type="text" placeholder="Search.." name="query">
-      <button>Search</button>
-    </form>
+  <h3>Welcome {{user.profile.name}}</h3>
 
-    <div class="users-preview">
-      <h4>Latest activated Users:</h4>
-      {{#each userList}}
-      <div class="user-preview">
-        <div class="img-section"> <img src="{{this.profile.image}}" alt="user image"> </div>
-        <div class="content-section"> 
-          <h3>{{this.profile.name}} {{this.profile.surname}}</h3>
-          <h4>{{this.activatedAt}}</h4>
-          <a href="/user/{{this.id}}">View details</a>
-        </div>
+  <form class="form-recent" action="/user/search" method="GET">
+    <input type="text" placeholder="Search.." name="query">
+    <button>Search</button>
+  </form>
+
+  <div class="users-preview">
+    <h4>Latest activated Users:</h4>
+    {{#each userList}}
+    <div class="user-preview">
+      <div class="img-section"> <img src="{{this.profile.image}}" alt="user image"> </div>
+      <div class="content-section">
+        <h3>{{this.profile.name}} {{this.profile.surname}}</h3>
+        <h4>{{this.activatedAt}}</h4>
+        <a href="/user/{{this.id}}">View details</a>
+
       </div>
-      {{/each}}
     </div>
-    {{/equal}}
+    {{/each}}
+  </div>
+  {{/equal}}
 
 
 
 
-    {{#equal "user" user.role}}
-    <h3>Welcome {{user.profile.name}}</h3>
+  {{#equal "user" user.role}}
+  <h3>Welcome {{user.profile.name}}</h3>
 
-    <form class="form-recent" action="/jobs/jobs-search" method="GET">
-      <input type="text" placeholder="Search.." name="job">
-      <button>Search</button>
-    </form>
-    
-    <div class="jobs-preview">
-      <h4>Latest added Jobs:</h4>
-      {{#each jobsList}}
-      <div class="job-preview">
-        <div class="img-section"> <img src="{{this.image}}" alt="job icon"> </div>
-        <div class="content-section"> 
-          <h3>{{this.title}}</h3>
-          <h4>{{this.city}}</h4>
-          <a href="/jobs/{{this.id}}">View details</a>
-        </div>
+  <form class="form-recent" action="/jobs/jobs-search" method="GET">
+    <input type="text" placeholder="Search.." name="job">
+    <button>Search</button>
+  </form>
+
+  <div class="jobs-preview">
+    <h4>Latest added Jobs:</h4>
+    {{#each jobsList}}
+    <div class="job-preview">
+      <div class="img-section"> <img src="{{this.image}}" alt="job icon"> </div>
+      <div class="content-section">
+        <h3>{{this.title}}</h3>
+        <h4>{{this.city}}</h4>
+        <a href="/jobs/{{this.id}}">View details</a>
+        <button class="favorites" id="{{this.id}}">Add to favs</button>
       </div>
-      {{/each}}
     </div>
     {{/equal}}
 
@@ -77,4 +77,8 @@
 
 
 </div>
+{{/each}}
+</div>
 
+
+</div>
