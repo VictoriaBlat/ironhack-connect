@@ -6,7 +6,10 @@ const router = express.Router();
 // login GET
 
 router.get('/login', (req, res, next) => {
-  res.render('user/login', { message: req.flash('error'), layout: false });
+  res.render('user/login', {
+    message: req.flash('error') || 'Please login',
+    layout: false,
+  });
 });
 
 // login POST
@@ -20,11 +23,6 @@ router.post(
     passReqToCallback: true,
   }),
 );
-
-router.get('/firstLogin', (req, res) => {
-  // ironhack-connect.herokuapp.com/firstLogin?userId=xyz
-  const userId = req.params.userId;
-});
 
 router.get('/logout', (req, res) => {
   req.logout();
