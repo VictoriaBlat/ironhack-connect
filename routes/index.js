@@ -3,25 +3,26 @@ const router = express.Router();
 const Job = require("../models/jobs");
 
 /* GET home page */
-router.get('/', (req, res, next) => {
+router.get("/", (req, res, next) => {
   //updated header
 
   //redirect to feed, if a session exists
   if (req.user) {
-    res.redirect('/feed');
+    res.redirect("/dashboard");
     return;
   }
   //redirect to feed, if a session exists
-  res.redirect('/login');
+  res.redirect("/login");
   return;
 });
 
 /*Page with the recently added, should appear once the user is logged in*/
 
-router.get("/recent", (req, res, next) => {
+router.get("/dashboard", (req, res, next) => {
   Job.find({})
     .then(jobDocuments => {
-      res.render("job/recent.hbs", { jobRecentList: jobDocuments });
+      res.render("job/dashboard.hbs", { jobRecentList: jobDocuments });
+      //res.send(jobDocuments);
     })
     .catch(err => {
       next(err);
