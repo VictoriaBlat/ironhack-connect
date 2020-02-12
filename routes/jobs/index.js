@@ -63,7 +63,7 @@ router.get("/:id", (req, res) => {
         return;
       }
 
-      res.render("job/jobPage.hbs", JobInfo);
+      res.render("job/jobPage.hbs", { jobInfo: JobInfo });
     })
     .catch(err => {
       next(err);
