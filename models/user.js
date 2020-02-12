@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
@@ -8,9 +8,9 @@ const userSchema = new Schema(
     password: { type: String },
     role: {
       type: String,
-      enum: ['user', 'moderator', 'admin'],
-      default: 'user',
-      require: true,
+      enum: ["user", "moderator", "admin"],
+      default: "user",
+      require: true
     },
     activatedAt: { type: Date },
     activated: { type: Boolean, default: false }, // time when the user logged in the first time and saved his Name and Surname
@@ -18,26 +18,32 @@ const userSchema = new Schema(
     jobsList: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Jobs',
-      },
+        ref: "Jobs"
+      }
+    ],
+    favJobs: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Jobs"
+      }
     ],
     profile: {
       name: { type: String },
       surname: { type: String },
       portfolio: String, // has to start with https:// | http:// AND end with .*** :
-      course: { type: String, enum: ['Data', 'UX/UI', 'WebDev'] },
+      course: { type: String, enum: ["Data", "UX/UI", "WebDev"] },
       batch: {
         month: String,
-        year: Number,
+        year: Number
       },
       // minor important attributes
-      image: { type: String, default: '/images/profile/no-image.jpg' },
+      image: { type: String, default: "/images/profile/no-image.jpg" },
 
       techStack: [
         {
           type: String,
-          rate: { type: Number, enum: [1, 2, 3, 4, 5] },
-        },
+          rate: { type: Number, enum: [1, 2, 3, 4, 5] }
+        }
       ],
 
       cv: [
@@ -47,31 +53,30 @@ const userSchema = new Schema(
           companyUrl: String,
           startDate: { type: Date },
           endDate: { type: Date },
-          current: Boolean,
-        },
+          current: Boolean
+        }
       ],
       searchFor: {
         type: String,
         enum: [
-          'part time job',
-          'full time job',
-          'collaboration',
-          'employees',
-          'freelance',
-          "don't know",
-        ],
-      },
-    },
+          "part time job",
+          "full time job",
+          "collaboration",
+          "employees",
+          "freelance",
+          "don't know"
+        ]
+      }
+    }
 
     // user definitely has to set (not required in the schema, just in the form validation):
   },
   {
     timestamps: {
-      createdAt: 'created_at',
-      updatedAt: 'updated_at',
-    },
-  },
+      createdAt: "created_at",
+      updatedAt: "updated_at"
+    }
+  }
 );
 
-module.exports = mongoose.model('User', userSchema);
-
+module.exports = mongoose.model("User", userSchema);
