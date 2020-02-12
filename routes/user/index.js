@@ -178,7 +178,7 @@ router.post('/create', (req, res, next) => {
 
           User.create({ email: email, role: role, password: hashPass })
             .then((user) => {
-              res.redirect('/' + user._id);
+              res.redirect('/user/' + user._id);
               return;
             })
             .catch((err) => next(err));
