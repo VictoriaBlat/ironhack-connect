@@ -8,7 +8,8 @@
             <ul>
                 <li><a href="/">Dashboard</a></li>
                 <li><a href="/today">Jobs</a></li>
-                {{#equal "admin" role}}
+                
+                {{#equal "admin" user.role}}
                     <li><a href="#">Test</a></li>
                 {{/equal}}
                 <li><a href="/logout">Logout</a></li>
@@ -21,7 +22,7 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/today">Jobs</a></li>
                 <li><a href="/login">Login</a></li>
-                {{#equal "admin" role}}
+                {{#equal "admin" user.role}}
                     <li><a href="#">Test</a></li>
                 {{/equal}}
                 <li><a href="/logout">Logout</a></li>

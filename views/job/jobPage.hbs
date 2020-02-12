@@ -1,22 +1,28 @@
-<h1>{{this.title}}</h1>
-<img src="{{this.image}}" alt="Image of {{this.company}}">
-<ul>
-  <li>{{this.category}}</li>
-  <li>{{this.startsAt}}</li>
-  <li>{{this.location.country}}{{this.location.city}}</li>
-  <li></li>
-</ul>
-<p>{{this.contractType}}</p>
+<div class="content-wrapper">
 
-<h2>{{this.company}}</h2>
+  <h1>{{this.title}}</h1>
+  <img src="{{this.image}}" alt="Image of {{this.company}}">
+  <ul>
+    <li>{{this.category}}</li>
+    <li>{{this.startsAt}}</li>
+    <li>{{this.location.country}}{{this.location.city}}</li>
+    <li></li>
+  </ul>
+  <p>{{this.contractType}}</p>
 
-<h3>{{this.description}}</h3>
-<h4>{{this.author}}</h4>
-{{#if user}}
-<a href="/jobs/{{JobInfo._id}}/edit">Edit this job</a>
-<a href="/jobs/{{JobInfo._id}}/delete">Delete this job</a>
-{{/if}}
+  <h2>{{this.company}}</h2>
+
+  <h3>{{this.description}}</h3>
+  <h4>{{this.author}}</h4>
+  {{#if user}}
+  <a href="/jobs/{{JobInfo._id}}/edit">Edit this job</a>
+  <a href="/jobs/{{JobInfo._id}}/delete">Delete this job</a>
+  {{/if}}
 
 
-<button id="reply-butt">Apply</button>
-<button id="save-butt">Save</button>
+  <button id="reply-butt">Apply</button>
+  <button id="save-butt">Save</button>
+
+
+</div>
+
