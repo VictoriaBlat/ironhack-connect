@@ -6,6 +6,10 @@ const router = express.Router();
 // login GET
 
 router.get('/login', (req, res, next) => {
+  if (req.user) {
+    res.redirect('/user/dashboard');
+    return;
+  }
   res.render('user/login', {
     message: req.flash('error') || 'Please login',
     layout: false,

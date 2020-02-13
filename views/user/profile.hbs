@@ -1,16 +1,61 @@
 <div class="content-wrapper">
+  {{#if allowed}}
+  <div class="edit">
+    {{!-- <span class="nm-text italic">edit profile:</span>  --}}
+    <a href="/user/{{user._id}}/edit">  <img class="edit-button" src="/images/edit-btn.svg" alt="edit button" ></a>
+  </div>
+    {{/if}}
   <div class="profile">
+    
     <div class="profile-head">
       <img src="{{user.profile.image}}" alt="">
-      <div class="user.profile-intro">
-       <span> {{user.profile.name}} {{user.profile.surname}}</span>
-        {{#if user.profile.profolio}} Website: <a href="{{user.profile.portfolio}}">{{user.profile.portfolio}}</a>{{/if}} 
+      <div class="profile-intro">
+         <div class="h2"> {{user.profile.name}} {{user.profile.surname}}</div>
+        <div  class="nm-text "> Job: {{user.profile.cv.[0].jobTitle}}</div>
+        <div class="nm-text italic">Company: {{user.profile.cv.[0].company}}</div>
+        <div class="nm-text bold">Course: {{user.profile.course}}</div>
+        <div class="nm-text  italic">Batch: {{user.profile.batch.month}} / {{user.profile.batch.year}} </div>
+        <a href="mailto:{{user.email}}"><button>Send me a message!</button></a>
       </div>
     </div>
+    <div class="profile-body">
+    <div class="nm-text bold">Portfolio:</div>
+  <div class="portfolio">
+      {{#if user.profile.portfolio}} 
+    <div class="item">
+      <a class="bold" href="{{user.profile.portfolio}}">{{user.profile.portfolio}}</a>
+    </div>
+    {{else}}
+    <div class="item">
+      ...
+    </div>
+    {{/if}} 
   </div>
-  {{#if allowed}}
-    <a href="/user/{{user._id}}/edit"> <img src="/images/edit-btn.svg" alt="edit button" ></a>
-  {{/if}}
+  <div class="nm-text bold">Techstack:</div>
+    <div class="tech-stack">
+      
+        {{#if user.profile.techStack}}
+        {{#each user.profile.techStack}}
+            <div class="item"> {{category}}: {{rate}} / 5</div>
+        {{/each}}
+        {{else}}
+        <div class="item"> ... </div>
+        {{/if}}
+    </div>
+      <div class="nm-text bold">Current Job:</div>
+    <div class="cv">
+        {{#if user.profile.cv}}
+   
+            <div class="item"><h3>Job Title: {{user.profile.cv.[0].jobTitle}}</h3></div>
+            <div class="item">Company: <a href="{{user.profile.cv.[0].companyUrl}}"> {{user.profile.cv.[0].company}}</a></div>
+            <div class="item"> Since: {{user.profile.cv.[0].startDate}}</div>
+        {{else}}
+        
+        <div class="item"> ... </div>
+        {{/if}}
+    </div>
+  </div>
 
+</div>
 
 </div>

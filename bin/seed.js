@@ -26,6 +26,32 @@ const defaultUser = [
   {
     email: 'user1@example.com',
     password: hashPass,
+    profile: {
+      // has to start with https:// | http:// AND end with .*** :
+      course: 'WebDev',
+      batch: {
+        month: 'January',
+        year: 2020,
+      },
+      // minor important attributes
+      image: '/images/profile/no-image.jpg',
+
+      techStack: [
+        {
+          category: 'Javascript',
+          rate: 3,
+        },
+        {
+          category: 'HTML/CSS',
+          rate: 3,
+        },
+        {
+          category: 'FriendlineSS',
+          rate: 3,
+        },
+      ],
+      searchFor: 'full time job',
+    },
   },
   //moderator
   {
