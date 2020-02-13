@@ -33,7 +33,7 @@
   {{#equal "user" user.role}}
   <h3>Welcome {{user.profile.name}}</h3>
 
-  <form class="form-recent" action="/jobs/jobs-search" method="GET">
+  <form class="form-recent" action="../jobs/jobs-search/queries" method="GET">
     <input type="text" placeholder="Search.." name="job">
     <button>Search</button>
   </form>
@@ -56,17 +56,17 @@
     {{#equal "moderator" user.role}}
     <h3>Welcome {{user.profile.name}}</h3>
 
-    <form class="form-recent" action="/jobs/jobs-search" method="GET">
+    <form class="form-recent" action="/jobs-search" method="GET">
       <input type="text" placeholder="Search.." name="job">
       <button>Search</button>
     </form>
-    
+
     <div class="jobs-preview">
       <h4>Latest added Jobs:</h4>
       {{#each jobsList}}
       <div class="job-preview">
         <div class="img-section"> <img src="{{this.image}}" alt="job icon"> </div>
-        <div class="content-section"> 
+        <div class="content-section">
           <h3>{{this.title}}</h3>
           <h4>{{this.city}}</h4>
           <a href="/jobs/{{this.id}}">View details</a>
@@ -78,4 +78,4 @@
 
 
 
-</div>
+  </div>

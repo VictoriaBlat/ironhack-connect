@@ -142,17 +142,28 @@ router.post("/firstLogin/:id", (req, res, next) => {
 });
 
 router.post("/addFavourites", (req, res) => {
-  console.log("hey axios works", req.body);
-  // User.findById(req.user._id,)
-  //find user get the data and check if that job is already there or not if not
-  User.findOneAndUpdate(req.user._id, { $push: { favJobs: req.body.id } })
+  //var query = req.body.favJobs;
+  User.findByIdAndUpdate(req.user._id, { $addToSet: { favJobs: req.body.id } })
     .then(data => {
+      DataTransfer;
+
       console.log(data);
     })
     .catch(err => {
       console.log(err);
     });
 });
+
+// /*favourite jobs page*/
+// router.get("/favourites", (req, res) => {
+//   const userId = req.params.id;
+//   User.findById(userId)
+//     .then(data => {
+//       console.log(data);
+//       res.render("user/favourites.hbs", { myFavs: data });
+//     })
+//     .catch(err => console.log("an errror occured", err));
+// });
 
 router.get("/create", (req, res, next) => {
   if (req.user.role === "admin") {
@@ -190,8 +201,8 @@ router.post("/create", (req, res, next) => {
           const hashPass = bcrypt.hashSync("1234", salt);
 
           User.create({ email: email, role: role, password: hashPass })
-            .then((user) => {
-              res.redirect('/user/' + user._id);
+            .then(user => {
+              res.redirect("/user/" + user._id);
               return;
             })
             .catch(err => next(err));

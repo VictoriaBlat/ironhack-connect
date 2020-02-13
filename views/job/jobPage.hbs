@@ -1,19 +1,19 @@
 <div class="content-wrapper">
-  
+
   <h1>{{jobInfo.title}}</h1>
   <img src="{{jobInfo.image}}" alt="Image of {{jobInfo.company}}">
   <ul>
     <li>{{jobInfo.category}}</li>
     <li>{{jobInfo.startsAt}}</li>
     <li>{{jobInfo.location.country}}{{jobInfo.location.city}}</li>
-    <li></li>
   </ul>
   <p>{{jobInfo.contractType}}</p>
 
   <h2>{{jobInfo.company}}</h2>
 
   <h3>{{jobInfo.description}}</h3>
-  <h4>Created by <a href="user/{{jobInfo.author._id}}">{{jobInfo.author.profile.name}} {{jobInfo.author.profile.surname}} </a></h4>
+  <h4>Created by <a href="user/{{jobInfo.author._id}}">{{jobInfo.author.profile.name}}
+      {{jobInfo.author.profile.surname}} </a></h4>
   {{#if user}}
   <a href="/jobs/{{jobInfo._id}}/edit">Edit this job</a>
   <a href="/jobs/{{jobInfo._id}}/delete">Delete this job</a>
@@ -25,4 +25,3 @@
 
 
 </div>
-

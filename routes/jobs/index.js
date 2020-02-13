@@ -121,4 +121,23 @@ router.post("/:id", (req, res, next) => {
     });
 });
 
+/*Job search*/
+
+router.get("/jobs-search/queries", (request, response) => {
+  const userInput = new RegExp(request.query.job, "i");
+  Job.find({
+    $or: [
+      { title: userInput },
+      { description: userInput },
+      { companyUrl: userInput }
+    ]
+  })
+    .then(data => {
+      //console.log("recieved data:", data);
+      console.log(data);
+      response.render("job/results.hbs", { jobSearchList: data });
+    })
+    .catch(err => console.log("an errror occured", err));
+});
+
 module.exports = router;

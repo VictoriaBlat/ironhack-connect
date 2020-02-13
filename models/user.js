@@ -18,13 +18,14 @@ const userSchema = new Schema(
     jobsList: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Jobs"
+        ref: "Job"
       }
     ],
     favJobs: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Jobs"
+        unique: true,
+        ref: "Job"
       }
     ],
     profile: {
