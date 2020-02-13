@@ -154,17 +154,6 @@ router.post("/addFavourites", (req, res) => {
     });
 });
 
-// /*favourite jobs page*/
-// router.get("/favourites", (req, res) => {
-//   const userId = req.params.id;
-//   User.findById(userId)
-//     .then(data => {
-//       console.log(data);
-//       res.render("user/favourites.hbs", { myFavs: data });
-//     })
-//     .catch(err => console.log("an errror occured", err));
-// });
-
 router.get("/create", (req, res, next) => {
   if (req.user.role === "admin") {
     console.log("---> Create User allowed");
@@ -238,5 +227,33 @@ router.get("/:id", (req, res, next) => {
     res.render("user/profile", { user: user, allowed });
     return;
   });
+});
+
+router.get("/:id/edit", (req, res, next) => {
+  res.render("user/editProfile");
+});
+router.post("/:id/edit", (req, res, next) => {
+  res.send(req.body);
+
+  // const updatedUser = { name };
+});
+
+router.post("/deleteStack", (req, res, next) => {
+  const { category } = req.body;
+
+  User.findByIdAndUpdate(req.user._id, {
+    $pull: { "profile.techStack": { category: category } }
+  })
+    .then(result => console.log(result))
+    .catch(err => next(err));
+});
+router.post("/addStack", (req, res, next) => {
+  const { category, rate } = req.body;
+
+  User.findByIdAndUpdate(req.user._id, {
+    $push: { "profile.techStack": { category: category, rate: rate } }
+  })
+    .then(result => console.log(result))
+    .catch(err => next(err));
 });
 module.exports = router;

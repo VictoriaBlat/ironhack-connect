@@ -12,25 +12,12 @@
                 {{#equal "admin" user.role}}
                     <li><a href="/user/create">Create User</a></li>
                 {{/equal}}
+                <li><a href="/user/">Member</a></li>
                 <li><a href="/user/{{user._id}}">My Profile</a></li>
                 <li><a href="/logout">Logout</a></li>
             </ul>
         </navcontent>       
     </nav>
-    <nav class="nav" style=" "> 
-        <navcontent>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/today">Jobs</a></li>
-                <li><a href="/login">Login</a></li>
-                {{#equal "admin" user.role}}
-                    <li><a href="#">Test</a></li>
-                {{/equal}}
-                <li><a href="/logout">Logout</a></li>
-            </ul>
-        </navcontent>       
-    </nav>
-
 
 </header>
 
