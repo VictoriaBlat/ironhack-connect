@@ -19,9 +19,9 @@
       </div>
     </div>
     <div class="profile-body">
-    <div class="nm-text bold">// Portfolio:</div>
+    <div class="nm-text bold">Portfolio:</div>
   <div class="portfolio">
-      {{#if user.profile.profolio}} 
+      {{#if user.profile.portfolio}} 
     <div class="item">
       <a class="bold" href="{{user.profile.portfolio}}">{{user.profile.portfolio}}</a>
     </div>
@@ -31,7 +31,7 @@
     </div>
     {{/if}} 
   </div>
-  <div class="nm-text bold">// Techstack:</div>
+  <div class="nm-text bold">Techstack:</div>
     <div class="tech-stack">
       
         {{#if user.profile.techStack}}
@@ -42,15 +42,15 @@
         <div class="item"> ... </div>
         {{/if}}
     </div>
-      <div class="nm-text bold">// History:</div>
+      <div class="nm-text bold">Current Job:</div>
     <div class="cv">
         {{#if user.profile.cv}}
-        {{#each user.profile.techStack}}
-            <div class="item"> {{jobTitle}}</div>
-            <div class="item"> @: <a href="{{companyUrl}}"> {{company}}</a></div>
-            <div class="item"> </div>
-        {{/each}}
+   
+            <div class="item"><h3>Job Title: {{user.profile.cv.[0].jobTitle}}</h3></div>
+            <div class="item">Company: <a href="{{user.profile.cv.[0].companyUrl}}"> {{user.profile.cv.[0].company}}</a></div>
+            <div class="item"> Since: {{user.profile.cv.[0].startDate}}</div>
         {{else}}
+        
         <div class="item"> ... </div>
         {{/if}}
     </div>

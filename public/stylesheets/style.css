@@ -215,8 +215,8 @@ main {
       .profile .profile-body .portfolio .item,
       .profile .profile-body .cv .item {
         display: flex;
-        justify-content: center;
-        align-items: center;
+        justify-content: left;
+        align-items: baseline;
         background-color: #c8c8c8;
         padding: 0.5rem;
         margin: 0.5rem;

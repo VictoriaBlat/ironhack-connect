@@ -244,9 +244,62 @@ router.get('/:id/edit', (req, res, next) => {
   res.render('user/editProfile');
 });
 router.post('/:id/edit', (req, res, next) => {
-  res.send(req.body);
+  const {
+    name,
+    surname,
+    course,
+    batchMonth,
+    portfolio,
+    batchYear,
+    jobTitle,
+    company,
+    companyUrl,
+    startDate,
+  } = req.body;
 
-  // const updatedUser = { name };
+  const updateUser = {
+    profile: {
+      name,
+      surname,
+      course,
+      portfolio,
+      batch: { month: batchMonth, year: batchYear },
+      cv: [
+        {
+          jobTitle,
+          company,
+          companyUrl,
+          startDate,
+        },
+      ],
+    },
+  };
+
+  User.findById(req.user._id)
+    .then((docsToMerge) => {
+      console.log(docsToMerge);
+      const mergedUserProfile = {
+        ...docsToMerge.profile,
+        ...updateUser.profile,
+      };
+      return User.findOneAndUpdate(
+        { _id: req.user._id },
+        { $set: { profile: mergedUserProfile } },
+      );
+    })
+    .then((result) => {
+      res.redirect(`/user/${req.user._id}`);
+    })
+    .catch((err) => {
+      next(err);
+    });
+
+  //
+  //   .then((result) => {
+  //     res.redirect(`/user/${req.user._id}`);
+  //   })
+  //   .catch((err) => next(err));
+  // // const updatedUser = { name };
 });
 
 router.post('/deleteStack', (req, res, next) => {
