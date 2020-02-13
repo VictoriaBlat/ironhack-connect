@@ -15,7 +15,7 @@
         <div class="nm-text italic">@: {{user.profile.cv.[0].company}}</div>
         <div class="nm-text bold">Course: {{user.profile.course}}</div>
         <div class="nm-text  italic">Batch: {{user.profile.batch.month}} / {{user.profile.batch.year}} </div>
-        <button>Send me a message!</button>
+        <a href="mailto:{{user.email}}"><button>Send me a message!</button></a>
       </div>
     </div>
     <div class="profile-body">

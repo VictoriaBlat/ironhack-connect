@@ -4,14 +4,13 @@
   <img src="{{jobInfo.image}}" alt="Image of {{jobInfo.company}}">
   <ul>
     <li>{{jobInfo.category}}</li>
-    <li>{{jobInfo.startsAt}}</li>
     <li>{{jobInfo.location.country}}{{jobInfo.location.city}}</li>
   </ul>
   <p>{{jobInfo.contractType}}</p>
 
   <h2>{{jobInfo.company}}</h2>
 
-  <h3>{{jobInfo.description}}</h3>
+  <p style="word-wrap: break-word"class="nm-text">{{jobInfo.description}}</p>
   <h4>Created by <a href="user/{{jobInfo.author._id}}">{{jobInfo.author.profile.name}}
       {{jobInfo.author.profile.surname}} </a></h4>
   {{#if user}}

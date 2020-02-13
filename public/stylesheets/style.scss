@@ -289,6 +289,11 @@ main {
     .tech-stack {
       flex-direction: row;
       flex-wrap: wrap;
+      img.killer {
+        height: 15px;
+        width: auto;
+        margin-left: 1rem;
+      }
     }
   }
 }
@@ -305,6 +310,14 @@ main {
     margin-bottom: 1rem;
   }
 
+  &.login {
+    align-items: center;
+    width: 250px;
+    .login-form {
+      width: 250px;
+    }
+  }
+
   .jobs-preview,
   .users-preview {
     display: flex;
@@ -314,12 +327,16 @@ main {
     .user-preview {
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: stretch;
       width: 100%;
-      border: 1px solid $light-theme-color;
+
+      margin-bottom: 2rem;
+      * {
+        margin: 0;
+      }
       .img-section {
         flex: 1 1 20%;
-        height: 100%;
+        display: flex;
         img {
           height: 100%;
           width: 100%;
@@ -327,6 +344,13 @@ main {
       }
       .content-section {
         flex: 1 2 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 0 1rem;
+        background-color: $light-theme-color;
+        * {
+        }
       }
     }
   }
@@ -369,9 +393,6 @@ input,
 select {
   margin: 0.5rem 0.2rem !important;
 }
-.login-form {
-  min-width: 250px;
-}
 
 .visible {
   display: block;
@@ -389,7 +410,7 @@ nav.nav {
   }
 }
 
-@media (min-width: 320px) and (max-width: 480px) {
+@media (min-width: 320px) and (max-width: 767px) {
   header {
     #menu-btn {
       display: block;
@@ -398,15 +419,33 @@ nav.nav {
       max-width: 100%;
     }
   }
+
+  main {
+    padding: 0rem;
+    .content-wrapper {
+    }
+  }
+
+  .profile {
+    justify-content: flex-start;
+    .profile-head {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      img {
+        flex: unset;
+      }
+      .profile-intro {
+        width: 100%;
+      }
+    }
+  }
 }
 
 /* 
   ##Device = Most of the Smartphones Mobiles (Portrait)
   ##Screen = B/w 320px to 479px
 */
-
-@media (max-width: 767px) {
-}
 
 @media (min-width: 1281px) {
   #header-logo {

@@ -244,6 +244,10 @@ main {
     .profile .profile-body .tech-stack {
       flex-direction: row;
       flex-wrap: wrap; }
+      .profile .profile-body .tech-stack img.killer {
+        height: 15px;
+        width: auto;
+        margin-left: 1rem; }
 
 .content-wrapper {
   position: relative;
@@ -255,6 +259,11 @@ main {
   align-items: stretch; }
   .content-wrapper * {
     margin-bottom: 1rem; }
+  .content-wrapper.login {
+    align-items: center;
+    width: 250px; }
+    .content-wrapper.login .login-form {
+      width: 250px; }
   .content-wrapper .jobs-preview,
   .content-wrapper .users-preview {
     display: flex;
@@ -266,15 +275,20 @@ main {
     .content-wrapper .users-preview .user-preview {
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: stretch;
       width: 100%;
-      border: 1px solid #eeeeef; }
+      margin-bottom: 2rem; }
+      .content-wrapper .jobs-preview .job-preview *,
+      .content-wrapper .jobs-preview .user-preview *,
+      .content-wrapper .users-preview .job-preview *,
+      .content-wrapper .users-preview .user-preview * {
+        margin: 0; }
       .content-wrapper .jobs-preview .job-preview .img-section,
       .content-wrapper .jobs-preview .user-preview .img-section,
       .content-wrapper .users-preview .job-preview .img-section,
       .content-wrapper .users-preview .user-preview .img-section {
         flex: 1 1 20%;
-        height: 100%; }
+        display: flex; }
         .content-wrapper .jobs-preview .job-preview .img-section img,
         .content-wrapper .jobs-preview .user-preview .img-section img,
         .content-wrapper .users-preview .job-preview .img-section img,
@@ -285,7 +299,12 @@ main {
       .content-wrapper .jobs-preview .user-preview .content-section,
       .content-wrapper .users-preview .job-preview .content-section,
       .content-wrapper .users-preview .user-preview .content-section {
-        flex: 1 2 80%; }
+        flex: 1 2 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 0 1rem;
+        background-color: #eeeeef; }
   .content-wrapper form {
     display: flex;
     flex-direction: column;
@@ -318,9 +337,6 @@ input,
 select {
   margin: 0.5rem 0.2rem !important; }
 
-.login-form {
-  min-width: 250px; }
-
 .visible {
   display: block; }
 
@@ -333,11 +349,23 @@ nav.nav {
   nav.nav navcontent {
     width: 100%; }
 
-@media (min-width: 320px) and (max-width: 480px) {
+@media (min-width: 320px) and (max-width: 767px) {
   header #menu-btn {
     display: block; }
   header nav.nav-mobile {
-    max-width: 100%; } }
+    max-width: 100%; }
+  main {
+    padding: 0rem; }
+  .profile {
+    justify-content: flex-start; }
+    .profile .profile-head {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center; }
+      .profile .profile-head img {
+        flex: unset; }
+      .profile .profile-head .profile-intro {
+        width: 100%; } }
 
 /* 
   ##Device = Most of the Smartphones Mobiles (Portrait)
