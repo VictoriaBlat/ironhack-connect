@@ -1,0 +1,16 @@
+<div class="content-wrapper">
+  <div class="profile">
+    <div class="profile-head">
+      <img src="{{user.profile.image}}" alt="">
+      <div class="user.profile-intro">
+       <span> {{user.profile.name}} {{user.profile.surname}}</span>
+        {{#if user.profile.profolio}} Website: <a href="{{user.profile.portfolio}}">{{user.profile.portfolio}}</a>{{/if}} 
+      </div>
+    </div>
+  </div>
+  {{#if allowed}}
+    <a href="/user/{{user._id}}/edit"> <img src="/images/edit-btn.svg" alt="edit button" ></a>
+  {{/if}}
+
+
+</div>
