@@ -41,7 +41,7 @@ const userSchema = new Schema(
 
       techStack: [
         {
-          type: String,
+          category: String,
           rate: { type: Number, enum: [1, 2, 3, 4, 5] }
         }
       ],

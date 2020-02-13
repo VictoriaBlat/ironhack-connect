@@ -1,28 +1,28 @@
-const router = require("express").Router();
-const Job = require("../../models/jobs");
-const User = require("../../models/user");
-var nodemailer = require("nodemailer");
-const bcrypt = require("bcrypt");
+const router = require('express').Router();
+const Job = require('../../models/jobs');
+const User = require('../../models/user');
+var nodemailer = require('nodemailer');
+const bcrypt = require('bcrypt');
 const bcryptSalt = 10;
 
 const checkForLogin = (req, res, next) => {
-  console.log("-----> check for login");
+  console.log('-----> check for login');
   if (!req.user) {
-    console.log("-----> not logged in");
-    res.redirect("/");
+    console.log('-----> not logged in');
+    res.redirect('/');
     return;
   }
-  console.log("-----> logged in");
+  console.log('-----> logged in');
   next();
 };
 
 const checkForActivated = (req, res, next) => {
-  console.log("activated?:", req.user.activated);
+  console.log('activated?:', req.user.activated);
   if (!req.user.activated) {
-    res.render("user/firstLogin", {
+    res.render('user/firstLogin', {
       userId: req.user._id,
       layout: false,
-      message: `It's your first login. Your have to set your name and password before you can login.`
+      message: `It's your first login. Your have to set your name and password before you can login.`,
     });
     return;
   } else {
@@ -30,16 +30,16 @@ const checkForActivated = (req, res, next) => {
   }
 };
 
-const sendInviteMail = email => {};
+const sendInviteMail = (email) => {};
 
 router.use(checkForLogin);
 // router.use(checkForActivated);
 
-router.get("/dashboard", checkForActivated, (req, res, next) => {
-  console.log("-----> dashboard");
-  console.log("-----> User:");
+router.get('/dashboard', checkForActivated, (req, res, next) => {
+  console.log('-----> dashboard');
+  console.log('-----> User:');
 
-  if (req.user.role === "admin") {
+  if (req.user.role === 'admin') {
     // const Promises = [
     //   User.find({ activated: true })
     //     .sort({ activatedAt: -1 })
@@ -49,71 +49,71 @@ router.get("/dashboard", checkForActivated, (req, res, next) => {
     User.find({ activated: true })
       .sort({ activatedAt: -1 })
       .limit(3)
-      .then(userList => {
+      .then((userList) => {
         console.log(userList);
-        res.render("user/dashboard.hbs", {
-          userList: userList
+        res.render('user/dashboard.hbs', {
+          userList: userList,
         });
         return;
       })
-      .catch(err => {
+      .catch((err) => {
         next(err);
       });
   } else {
     Job.find({})
       .sort({ createdAt: -1 })
       .limit(3)
-      .then(jobsList => {
+      .then((jobsList) => {
         // res.send(jobs);
-        res.render("user/dashboard.hbs", {
+        res.render('user/dashboard.hbs', {
           role: req.user.role,
-          jobsList: jobsList
+          jobsList: jobsList,
         });
         return;
       })
-      .catch(err => {
+      .catch((err) => {
         next(err);
       });
   }
 });
 
-router.post("/firstLogin/:id", (req, res, next) => {
-  console.log("-----> First login Post");
+router.post('/firstLogin/:id', (req, res, next) => {
+  console.log('-----> First login Post');
   const userId = req.params.id;
   const { name, lastname, password, confirmPassword } = req.body;
 
   if (req.user.activated) {
-    res.redirect("/");
+    res.redirect('/');
   }
 
-  if (name === "" || lastname === " " || password === "") {
-    res.render("user/firstLogin", {
+  if (name === '' || lastname === ' ' || password === '') {
+    res.render('user/firstLogin', {
       name,
       lastname,
       layout: false,
-      message: "Indicate username and password"
+      message: 'Indicate username and password',
     });
     return;
   }
 
   if (password !== confirmPassword) {
-    res.render("user/firstLogin", {
+    res.render('user/firstLogin', {
       name,
       lastname,
       layout: false,
-      message: "Your password did not match"
+      message: 'Your password did not match',
     });
     return;
   }
 
-  User.findById(userId).then(userDoc => {
-    console.log("---> user found");
+  User.findById(userId).then((userDoc) => {
+    console.log('---> user found');
     if (userDoc === null) {
-      res.render("user/firstLogin", {
+      res.render('user/firstLogin', {
         name,
         lastname,
         layout: false,
-        message: "The username does not exists! Please, contact your admin."
+        message: 'The username does not exists! Please, contact your admin.',
       });
     }
     // Can be deleted?
@@ -127,105 +127,133 @@ router.post("/firstLogin/:id", (req, res, next) => {
         password: hashPass,
         activated: true,
         activatedAt: new Date(),
-        "profile.name": name,
-        "profile.surname": lastname
-      }
+        'profile.name': name,
+        'profile.surname': lastname,
+      },
     )
-      .then(result => {
-        console.log("---> updated & activated User");
-        res.redirect("/");
+      .then((result) => {
+        console.log('---> updated & activated User');
+        res.redirect('/');
       })
-      .catch(err => {
+      .catch((err) => {
         next(err);
       });
   });
 });
 
-router.post("/addFavourites", (req, res) => {
-  console.log("hey axios works", req.body);
+router.post('/addFavourites', (req, res) => {
+  console.log('hey axios works', req.body);
   // User.findById(req.user._id,)
   //find user get the data and check if that job is already there or not if not
   User.findOneAndUpdate(req.user._id, { $push: { favJobs: req.body.id } })
-    .then(data => {
+    .then((data) => {
       console.log(data);
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 });
 
-router.get("/create", (req, res, next) => {
-  if (req.user.role === "admin") {
-    console.log("---> Create User allowed");
+router.get('/create', (req, res, next) => {
+  if (req.user.role === 'admin') {
+    console.log('---> Create User allowed');
 
-    res.render("user/createUser");
+    res.render('user/createUser');
     return;
   }
 
-  console.log("---> Create User Not allowed");
-  res.redirect("/user/dashboard");
+  console.log('---> Create User Not allowed');
+  res.redirect('/user/dashboard');
 });
-router.post("/create", (req, res, next) => {
-  if (req.user.role === "admin") {
-    console.log("---> Post Create User");
+router.post('/create', (req, res, next) => {
+  if (req.user.role === 'admin') {
+    console.log('---> Post Create User');
     console.log(req.body);
 
     const { email, role, opt } = req.body;
 
-    if (opt != "on") {
-      res.render("user/createUser", {
+    if (opt != 'on') {
+      res.render('user/createUser', {
         email,
         role,
-        message: "Please confirm !"
+        message: 'Please confirm !',
       });
       return;
     }
 
     User.find({ email: email })
-      .find(user => {
+      .find((user) => {
         console.log(user);
 
         if (user === null) {
           const salt = bcrypt.genSaltSync(bcryptSalt);
-          const hashPass = bcrypt.hashSync("1234", salt);
+          const hashPass = bcrypt.hashSync('1234', salt);
 
           User.create({ email: email, role: role, password: hashPass })
             .then((user) => {
               res.redirect('/user/' + user._id);
               return;
             })
-            .catch(err => next(err));
+            .catch((err) => next(err));
         } else {
-          res.render("user/createUser", {
+          res.render('user/createUser', {
             email,
             role,
-            message: "User already exists"
+            message: 'User already exists',
           });
           return;
         }
       })
-      .catch(err => next(err));
+      .catch((err) => next(err));
 
     return;
   }
 
-  console.log("---> Create User Not allowed");
-  res.redirect("/user/dashboard");
+  console.log('---> Create User Not allowed');
+  res.redirect('/user/dashboard');
 });
 
-router.get("/:id", (req, res, next) => {
+router.get('/:id', (req, res, next) => {
   const userId = req.params.id;
   const visitorId = req.user._id;
-  console.log("---> User profile of: ", userId);
-  User.findById(userId).then(user => {
+  console.log('---> User profile of: ', userId);
+  User.findById(userId).then((user) => {
     let allowed = user._id.toString() === visitorId.toString() ? true : false;
-    if (req.user.role === "admin") {
+    if (req.user.role === 'admin') {
       allowed = true;
     }
 
     console.log(allowed, user._id, visitorId);
-    res.render("user/profile", { user: user, allowed });
+    res.render('user/profile', { user: user, allowed });
     return;
   });
+});
+
+router.get('/:id/edit', (req, res, next) => {
+  res.render('user/editProfile');
+});
+router.post('/:id/edit', (req, res, next) => {
+  res.send(req.body);
+
+  // const updatedUser = { name };
+});
+
+router.post('/deleteStack', (req, res, next) => {
+  const { category } = req.body;
+
+  User.findByIdAndUpdate(req.user._id, {
+    $pull: { 'profile.techStack': { category: category } },
+  })
+    .then((result) => console.log(result))
+    .catch((err) => next(err));
+});
+router.post('/addStack', (req, res, next) => {
+  const { category, rate } = req.body;
+
+  User.findByIdAndUpdate(req.user._id, {
+    $push: { 'profile.techStack': { category: category, rate: rate } },
+  })
+    .then((result) => console.log(result))
+    .catch((err) => next(err));
 });
 module.exports = router;
