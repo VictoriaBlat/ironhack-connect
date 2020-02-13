@@ -33,6 +33,7 @@
 
   {{#equal "user" user.role}}
   <h3>Welcome {{user.profile.name}}</h3>
+  <h4>Job search</h4>
 
   <form class="form-recent" action="../jobs/jobs-search/queries" method="GET">
     <input type="text" placeholder="Search.." name="job">
@@ -48,7 +49,7 @@
         <h3>{{this.title}}</h3>
         <h4>{{this.city}}</h4>
         <a href="/jobs/{{this.id}}">View details</a>
-        <button class="favorites" id="{{this.id}}">Add to favs</button>
+        <button class="favorites" id="{{this.id}}">Add to favourites</button>
       </div>
     </div>
     {{/each}}
