@@ -1,0 +1,26 @@
+<div class="content-wrapper">
+
+  <h1>{{jobInfo.title}}</h1>
+  <img src="{{jobInfo.image}}" alt="Image of {{jobInfo.company}}">
+
+  <h3>{{jobInfo.category}}</h3>
+  <h3>{{jobInfo.location.country}} {{jobInfo.location.city}}</h3>
+
+  <p>{{jobInfo.contractType}}</p>
+
+  <h2>{{jobInfo.company}}</h2>
+
+  <p style="word-wrap: break-word" class="nm-text">{{jobInfo.description}}</p>
+  <h4>Created by <a href="user/{{jobInfo.author._id}}">{{jobInfo.author.profile.name}}
+      {{jobInfo.author.profile.surname}} </a></h4>
+  {{#if user}}
+  <a style="display: inline" href="/jobs/{{jobInfo._id}}/edit">Edit this job</a>
+  <a style="display: inline" href="/jobs/{{jobInfo._id}}/delete">Delete this job</a>
+  {{/if}}
+
+
+  <button id="reply-butt">Apply</button>
+  <button class="favorites" id="{{jobInfo.id}}">Add to favourites</button>
+
+
+</div>
