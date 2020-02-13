@@ -12,7 +12,7 @@
       <div class="profile-intro">
          <div class="h2"> {{user.profile.name}} {{user.profile.surname}}</div>
         <div  class="nm-text "> Job: {{user.profile.cv.[0].jobTitle}}</div>
-        <div class="nm-text italic">@: {{user.profile.cv.[0].company}}</div>
+        <div class="nm-text italic">Company: {{user.profile.cv.[0].company}}</div>
         <div class="nm-text bold">Course: {{user.profile.course}}</div>
         <div class="nm-text  italic">Batch: {{user.profile.batch.month}} / {{user.profile.batch.year}} </div>
         <a href="mailto:{{user.email}}"><button>Send me a message!</button></a>
