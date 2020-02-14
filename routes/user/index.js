@@ -244,7 +244,7 @@ router.post('/create', (req, res, next) => {
 							let mailOptions = {
 								from: 'Ironhack.connect',
 								to: email,
-								subject: 'test',
+								subject: 'Welcome to Ironhack.Connect',
 								html: emailText,
 							};
 
@@ -254,6 +254,7 @@ router.post('/create', (req, res, next) => {
 								} else {
 									console.log('Email sent: ' + info.response);
 								}
+								('jonathan@jonathansaudhof.de');
 							});
 						})
 						.then((result) => {
