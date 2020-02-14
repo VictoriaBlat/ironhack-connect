@@ -189,6 +189,10 @@ main {
 .profile,
 .job-profile {
   width: 100%; }
+  .profile .item#portfolio-link,
+  .job-profile .item#portfolio-link {
+    background-color: transparent;
+    box-shadow: unset; }
   .profile .profile-head,
   .profile .job-profile-head,
   .job-profile .profile-head,
@@ -303,6 +307,10 @@ main {
           .job-profile .profile-body .portfolio .item #close-btn:hover,
           .job-profile .profile-body .cv .item #close-btn:hover {
             cursor: pointer; }
+    .profile .profile-body .cv .item,
+    .job-profile .profile-body .cv .item {
+      box-shadow: unset !important;
+      background-color: transparent; }
     .profile .profile-body .tech-stack,
     .job-profile .profile-body .tech-stack {
       flex-direction: row;

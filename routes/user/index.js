@@ -42,7 +42,7 @@ const getEmailText = (email, randomPassword) => {
 			<h1> Welcome to Ironhack Connect </h1>
 			<p>Please login on <a href="http://ironhack-connect.herokuapp.com"> http://ironhack-connect.herokuapp.com </a>
 			<p><b>Using your eMail: </b> ${email}</p>
-			<p><b>And this password: </b> ${randomPassword}</p>´
+			<p><b>And this password: </b> ${randomPassword}</p>
 		</body>
 	</html>`;
 };
