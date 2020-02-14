@@ -243,7 +243,7 @@ router.post('/create', (req, res, next) => {
 
 							let mailOptions = {
 								from: 'Ironhack.connect',
-								to: 'jonathan@jonathansaudhof.de',
+								to: email,
 								subject: 'test',
 								html: emailText,
 							};
