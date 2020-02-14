@@ -30,7 +30,32 @@ const checkForActivated = (req, res, next) => {
 	}
 };
 
-const sendInviteMail = (email) => {};
+const getEmailText = (email, randomPassword) => {
+	return `
+	<html lang="en">
+		<head>
+			<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<title>Welcome to Ironhack Connect </title>
+		</head>
+		<body>
+			<h1> Welcome to Ironhack Connect </h1>
+			<p>Please login on <a href="http://ironhack-connect.herokuapp.com"> http://ironhack-connect.herokuapp.com </a>
+			<p><b>Using your eMail: </b> ${email}</p>
+			<p><b>And this password: </b> ${randomPassword}</p>
+		</body>
+	</html>`;
+};
+
+//node mailer
+
+var transporter = nodemailer.createTransport({
+	service: 'gmail',
+	auth: {
+		user: process.env.MAIL_USER,
+		pass: process.env.MAIL_PASS,
+	},
+});
 
 router.use(checkForLogin);
 // router.use(checkForActivated);
@@ -179,7 +204,7 @@ router.get('/create', (req, res, next) => {
 router.post('/create', (req, res, next) => {
 	if (req.user.role === 'admin') {
 		console.log('---> Post Create User');
-		console.log(req.body);
+		console.log({ ...req.body });
 
 		const { email, role, opt } = req.body;
 
@@ -192,27 +217,51 @@ router.post('/create', (req, res, next) => {
 			return;
 		}
 
-		User.find({ email: email })
-			.find((user) => {
-				console.log(user);
-
-				if (user === null) {
-					const salt = bcrypt.genSaltSync(bcryptSalt);
-					const hashPass = bcrypt.hashSync('1234', salt);
-
-					User.create({ email: email, role: role, password: hashPass })
-						.then((user) => {
-							res.redirect('/user/' + user._id);
-							return;
-						})
-						.catch((err) => next(err));
-				} else {
+		User.findOne({ email: email })
+			.then((user) => {
+				console.log('foundUser:', user);
+				if (user !== null) {
 					res.render('user/createUser', {
 						email,
 						role,
 						message: 'User already exists',
 					});
 					return;
+				}
+
+				if (user === null) {
+					const randomPassword = Math.random()
+						.toString(36)
+						.slice(-8);
+					const salt = bcrypt.genSaltSync(bcryptSalt);
+					const hashPass = bcrypt.hashSync(randomPassword, salt);
+
+					User.create({ email: email, role: role, password: hashPass })
+						.then((user) => {
+							// write an email with the password
+							const emailText = getEmailText(email, randomPassword);
+
+							let mailOptions = {
+								from: 'Ironhack.connect',
+								to: 'jonathan@jonathansaudhof.de',
+								subject: 'test',
+								html: emailText,
+							};
+
+							return transporter.sendMail(mailOptions, function(error, info) {
+								if (error) {
+									console.log(error);
+								} else {
+									console.log('Email sent: ' + info.response);
+								}
+							});
+						})
+						.then((result) => {
+							res.redirect('/user/dashboard');
+							return;
+						})
+						.catch((err) => next(err));
+				} else {
 				}
 			})
 			.catch((err) => next(err));

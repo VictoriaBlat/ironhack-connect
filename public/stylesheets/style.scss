@@ -53,6 +53,9 @@ a {
 .justify-space-between {
   justify-content: space-between;
 }
+.justify-start{
+  justify-content: flex-start;
+}
 
 .align-center {
   align-items: center;
@@ -224,11 +227,16 @@ main {
       border: 2px solid $medium-theme-color;
       border-radius: 0.2rem;
     }
+    
   }
 }
 
 .profile,
 .job-profile {
+  .item#portfolio-link{
+    background-color: transparent;
+    box-shadow: unset;
+  }
   width: 100%;
   .profile-head,
   .job-profile-head {
@@ -310,6 +318,10 @@ main {
           }
         }
       }
+    }
+    .cv .item{
+      box-shadow: unset !important;
+      background-color: transparent;
     }
 
     .tech-stack {

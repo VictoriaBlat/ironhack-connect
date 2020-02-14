@@ -22,11 +22,11 @@
     <div class="nm-text bold">Portfolio:</div>
   <div class="portfolio">
       {{#if member.profile.portfolio}} 
-    <div class="item">
-      <a class="bold" href="{{member.profile.portfolio}}">{{member.profile.portfolio}}</a>
+    <div class="item" id="portfolio-link">
+      <a class="bold"  href="{{member.profile.portfolio}}">{{member.profile.portfolio}}</a>
     </div>
     {{else}}
-    <div class="item">
+    <div class="item" id="portfolio-link">
       ...
     </div>
     {{/if}} 
