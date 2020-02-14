@@ -55,6 +55,12 @@ button,
   justify-content: center;
   align-items: center;
   box-shadow: 0 1px 2px 0 #30354c; }
+  button:hover,
+  .btn:hover {
+    cursor: pointer;
+    background-color: #32c3ff;
+    color: #30354c;
+    border-color: #32c3ff; }
 
 .btn-secondary {
   background-color: #32c3ff;

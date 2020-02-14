@@ -73,6 +73,12 @@ button,
   justify-content: center;
   align-items: center;
   box-shadow: 0 1px 2px 0 $dark-theme-color;
+  &:hover{
+    cursor: pointer;
+    background-color: $accent-theme-color;
+    color: $heading-color;
+    border-color: $accent-theme-color;
+  }
 }
 
 .btn-secondary {

@@ -9,10 +9,13 @@
       <div class="nm-text bold">{{jobInfo.location.country}} {{jobInfo.location.city}}</div>
     </div>
   </div>
-  <div class="nm-text bold">{{jobInfo.contractType}}</div>
-  <a href="{{jobInfo.companyUrl}}"><div class="nm-text bold">{{jobInfo.company}}</div></a>
+  <div class="nm-text bold">Contract type: {{jobInfo.contractType}}</div>
+    <div class="nm-text bold">Company:</div>
+
+   <a href="{{jobInfo.companyUrl}}"><div class="nm-text bold">{{jobInfo.company}}</div></a>
+  <div class="nm-text bold">Job description</div>
   <p style="word-wrap: break-word" class="nm-text">{{jobInfo.description}}</p>
-  <div class="nm-text italic">Created by <a href="user/{{jobInfo.author._id}}">{{jobInfo.author.profile.name}}
+  <div class="nm-text italic">Created by <a href="/user/{{jobInfo.author._id}}">{{jobInfo.author.profile.name}}
       {{jobInfo.author.profile.surname}} </a></div>
   {{#if user}}
   <div class="admin">
