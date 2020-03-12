@@ -4,18 +4,27 @@
 
 ## Getting Started
 
-This is a Node JS / Express / Handlebars app. After you cloned the repository.
+This is a Node JS / Express / Handlebars / Mongoose app. After you cloned the repository.
+
 ### Installation
 
+For the installation you need to clone the repo and change to the directory. Afterwards do a npm install. 
 
 ```
 cd ironhack-connect
 npm install 
+```
 
-// setting up your environmental variables for mongodb
+### Seed the database
 
-// seeding database
+When you finished you need to ***setup your environmental variables for MongoDB***. Now, you can seed the database
+
+```
 node bin/seed.js
 ```
+
+### Run the server
+
+
 
 
