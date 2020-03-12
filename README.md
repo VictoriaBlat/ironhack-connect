@@ -23,7 +23,7 @@ When you finished you need to ***setup your environmental variables for MongoDB*
 node bin/seed.js
 ```
 
-### Run the server
+### Run the development server
 
 ```
 npm run dev
