@@ -29,4 +29,8 @@ node bin/seed.js
 npm run dev
 ```
 
+## Run the Server
 
+```
+npm run start
+```
