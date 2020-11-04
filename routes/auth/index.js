@@ -1,27 +1,43 @@
 const express = require('express');
-
+const passport = require('passport');
 const router = express.Router();
 
-//login
+// login
+// login GET
+
 router.get('/login', (req, res, next) => {
-	res.render('users/login');
+  if (req.user) {
+    res.redirect('/user/dashboard');
+    return;
+  }
+  res.render('user/login', {
+    message: req.flash('error') || 'Please login',
+    layout: false,
+  });
 });
 
-router.post('/login', (req, res, next) => {
-	// the user gets authenticated
-	// a session is set and the user gets a req.user body
+// login POST
+// the post request calls passport.authenticate and
+router.post(
+  '/login',
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login',
+    failureFlash: true,
+    passReqToCallback: true,
+  }),
+);
 
-	const { username, password } = req.body;
-	console.log(username, password);
-	res.send('test');
-	//
+router.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/login');
 });
 
-//createUser , just for admins
+//createUser , just for admins ==> other route
+
 router.get('/createUser');
 router.post('/createUser', (req, res, next) => {
-	/* A new  */
+  /* A new  */
 });
 
-//
 module.exports = router;
