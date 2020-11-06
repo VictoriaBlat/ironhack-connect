@@ -1,6 +1,10 @@
 # ironhack-connect
 
-[Victoria Blatkowska](https://github.com/VictoriaBlat) and me builded an alumni plattform for the ironhack family. ❤️
+![screencast login page](sc1.png)
+
+
+Ironhack-connect is a platform for Ironhack alumni, with the primarly aim to serve as a job platform. Created together with [Jonathan Saudhof](https://github.com/JonathanSaudhof).
+
 
 ## Getting Started
 
