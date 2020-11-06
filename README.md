@@ -5,6 +5,11 @@
 
 Ironhack-connect is a platform for Ironhack alumni, with the primarly aim to serve as a job platform. Created together with [Jonathan Saudhof](https://github.com/JonathanSaudhof).
 
+Demo : https://ironhack-connect.herokuapp.com/
+
+user: admin@example.com
+password: 1234
+
 
 ## Getting Started
 
